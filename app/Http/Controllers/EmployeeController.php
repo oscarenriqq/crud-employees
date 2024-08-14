@@ -63,7 +63,18 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $employee = Employee::find($id);
+
+        $employee->name = $request->name;
+        $employee->email = $request->email;
+        $employee->phone = $request->phone;
+        $employee->country = $request->country;
+        $employee->jobposition = $request->jobposition;
+
+        $employee->save();
+
+        return $employee;
+
     }
 
     /**
@@ -71,6 +82,6 @@ class EmployeeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return Employee::destroy($id);
     }
 }

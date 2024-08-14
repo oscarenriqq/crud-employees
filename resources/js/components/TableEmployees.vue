@@ -7,6 +7,7 @@
                     <th>Email</th>
                     <th>Teléfono</th>
                     <th>País</th>
+                    <th>Posición</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -16,10 +17,22 @@
                     <td>{{ employee.email }}</td>
                     <td>{{ employee.phone }}</td>
                     <td>{{ employee.country }}</td>
+                    <td>{{ employee.jobposition }}</td>
                     <td>
                         <div class="flex gap-2 w-auto">
-                            <button> Editar </button>
-                            <button> Eliminar </button>
+                            <router-link :to="{ 
+                                name: 'edit',
+                                params: {
+                                    id: employee.id
+                                } 
+                            }" > Editar </router-link>
+                            <router-link :to="{ 
+                                name: 'delete',
+                                params: {
+                                    id: employee.id
+                                } 
+                            }" > Eliminar </router-link>
+                            <!-- <RouterLink> Eliminar </RouterLink> -->
                         </div>
                     </td>
                 </tr>
@@ -30,6 +43,8 @@
 
 <script setup>
 import { defineProps } from 'vue'
+
+import { RouterLink } from 'vue-router'
 
 const props = defineProps(['employees'])
 
